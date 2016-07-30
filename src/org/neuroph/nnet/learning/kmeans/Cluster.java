@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * This class represents a single cluster, with corresponding centroid and assigned vectors
+ * 这个类代表一个单的聚类中心 \t This class represents a single cluster, with corresponding centroid and assigned vectors
  * @author Zoran Sevarac
  */
 public class Cluster {    
@@ -16,7 +16,7 @@ public class Cluster {
     KVector centroid;
     
     /**
-     * 分配到该类中心的数据集Vectors assigned to this cluster during clustering
+     * 分配到该类中心的数据，list存储，每个list就是一条数据   Vectors assigned to this cluster during clustering
      */
     List<KVector> vectors;    
 
@@ -24,20 +24,32 @@ public class Cluster {
     public Cluster() {
         this.vectors = new ArrayList<>();
     }
-   
+    /**
+     * 获取聚类中心
+     * @return
+     */
     public KVector getCentroid() {
         return centroid;
     }
-
+    /**
+     * 设置聚类中心
+     * @param centroid
+     */
     public void setCentroid(KVector centroid) {
         this.centroid = centroid;
     }
     
-    
+    /**
+     * 删除这个样本数据
+     * @param point
+     */
     public void removePoint(KVector point) {
         vectors.remove(point);
     }
-
+    /**
+     * 获取该类的数据 
+     * @return
+     */
     public List<KVector> getPoints() {
         return vectors;
     }
@@ -101,7 +113,7 @@ public class Cluster {
     
     
     /**
-     * 给类中分配向量 Assignes vector to this cluster.
+     * 该聚类中 添加一个样本数据      Assignes vector to this cluster.
      * @param vector vector to assign
      */
     public void assignVector(KVector vector) {

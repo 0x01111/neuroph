@@ -8,17 +8,19 @@ package org.neuroph.nnet.learning.kmeans;
 public class KVector {
     
     /**
-     * Values of feature vector
+     * 特性向量，表示一条样本数据  \t Values of feature vector
      */
     private double[] values;  
     
     /**
+     * 这个向量所在的聚类  
      * Cluster to which this vector is assigned during clustering
      */
     private Cluster cluster;
     
     
     /**
+     * 聚类
      * Distance fro other vector (used by K nearest neighbour)
      */
     private double distance;
@@ -36,15 +38,25 @@ public class KVector {
     public void setValueAt(int idx, double value) {
         this.values[idx] = value;
     }
-    
+    /**
+     * 设置 聚类中心idx的值
+     * @param idx
+     * @return
+     */
     public double getValueAt(int idx) {
         return values[idx];
     }
-
+    /**
+     * 获取聚类中心 
+     * @return
+     */
     public double[] getValues() {
         return values;
     }
-
+    /**
+     * 设置聚类中心
+     * @param values
+     */
     public void setValues(double[] values) {
         this.values = values;
     }
@@ -63,7 +75,7 @@ public class KVector {
     }
     
     /**
-     * Calculates and returns intensity of this vector
+     * 计算欧氏距离  Calculates and returns intensity of this vector
      * @return intensity of this vector
      */
     public double getIntensity() {
@@ -79,7 +91,7 @@ public class KVector {
     }
     
     /**
-     * Calculates and returns euclidean distance of this vector from the given cluster
+     * 计算到other 的欧氏距离  Calculates and returns euclidean distance of this vector from the given cluster
      * @param cluster
      * @return euclidean distance of this vector from given cluster
      */
@@ -101,7 +113,9 @@ public class KVector {
     public int size() {
         return values.length;
     }
-
+    /**
+     * 字符串性的形式输出聚类中心 
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

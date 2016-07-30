@@ -1,6 +1,7 @@
 package org.neuroph.samples;
 
 import java.util.Arrays;
+
 import org.neuroph.core.NeuralNetwork;
 import org.neuroph.core.data.DataSet;
 import org.neuroph.core.data.DataSetRow;
@@ -26,22 +27,33 @@ public class RBFClassificationSample implements LearningEventListener {
     
     public void run() {
         // get the path to file with data
-        String inputFileName = "data_sets/sine.csv";
+        String filePath = "E:\\java\\neuroph-a-core\\src\\org\\neuroph\\samples\\data\\iris_data_numLabel.txt";//data_sets/sine.csv";
         
         // create MultiLayerPerceptron neural network
-        RBFNetwork neuralNet = new RBFNetwork(1, 15, 1);
+        RBFNetwork neuralNet = new RBFNetwork(4,3,1);	//(1, 15, 1);
         
-        // create training set from file
-        DataSet dataSet = DataSet.createFromFile(inputFileName, 1, 1, ",", false);
+        
 
+		int inputsCount =  4; 
+		int outputsCount = 1;
+		String delimiter = ",";
+		boolean loadColumnNames = false;
+		// create training set from file
+		DataSet dataSet = DataSet.createFromFile(filePath, inputsCount, outputsCount, delimiter, loadColumnNames);
+		
+        for(int i=0;i<dataSet.size();i++){
+        	DataSetRow row = dataSet.getRowAt(i);
+        	System.out.println(row);
+        }
+        
         RBFLearning learningRule = ((RBFLearning)neuralNet.getLearningRule());
         learningRule.setLearningRate(0.02);
         learningRule.setMaxError(0.01);
         learningRule.addListener(this);
-                
+        learningRule.setMaxIterations(1000);
+        
         // train the network with training set
-        neuralNet.learn(dataSet);      
-                        
+        neuralNet.learn(dataSet);                    
         System.out.println("Done training.");
         System.out.println("Testing network...");
         

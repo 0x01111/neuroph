@@ -84,14 +84,14 @@ import org.neuroph.nnet.comp.neuron.BiasNeuron;
     /**
      * 创建左神经元 下一次 所有神经元(右神经元)进行链接
      * 如下图所示：
-     *     x
-     *   /  x
+     *     x1
+     *   /  x2
      * 	/  /
-     * o  /- x
+     * o  /- x3
      *  \ \
      *   \ \  
-     *    \ x
-     *     x  
+     *    \ x4
+     *     x5  
 	 * Creates  connectivity between specified neuron and all neurons in specified layer
 	 * 
 	 * @param fromNeuron

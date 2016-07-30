@@ -160,7 +160,7 @@ public class KMeansClustering {
         // for each cluster do the following
         for (Cluster cluster : clusters) { // for each cluster
             if (cluster.size()>0) {         // that cointains data
-                double[] avgSum = cluster.getAvgSum();  // calculate avg sum
+                double[] avgSum = cluster.getAvgSum();  // calculate avg sum 
                 cluster.getCentroid().setValues(avgSum);  // and set new centroid to avg sum
             }                                  
         }

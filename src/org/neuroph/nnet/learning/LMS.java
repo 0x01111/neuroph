@@ -68,6 +68,11 @@ public class LMS extends SupervisedLearning implements Serializable {
     }
 
     /**
+     * 该方法实现了一个神经元权值更新过程
+     * 它遍历所有神经元的输入连接,计算设置权值的变换
+     * 使用公式: deltaWeight = learningRate * neuronError * input
+     * 神经元计算误差：neuronError = desiredOutput[i] - actualOutput[i] 
+     * 
      * This method implements weights update procedure for the single neuron
      * It iterates through all neuron's input connections, and calculates/set weight change for each weight
      * using formula 
@@ -94,7 +99,7 @@ public class LMS extends SupervisedLearning implements Serializable {
             // get the input from current connection
             double input = connection.getInput();
             // calculate the weight change
-            double weightChange = this.learningRate * neuronError * input;
+            double weightChange = this.learningRate * neuronError * input; // 批量梯度下降法进行求解
 
             // get the connection weight
             Weight weight = connection.getWeight();

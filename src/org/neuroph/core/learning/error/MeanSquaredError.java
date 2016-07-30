@@ -47,13 +47,14 @@ public class MeanSquaredError implements ErrorFunction, Serializable {
     }
 
     /**
-     * 获取评价误差 
+     * 均方误差 
      */
     @Override
     public double getTotalError() {
         return totalError / ( 2 * patternCount );
     }
 /**
+ * 平方误差
  *  error +=  (target - predicted )^2
  */
     @Override

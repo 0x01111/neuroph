@@ -47,6 +47,7 @@ public class RBFNetwork extends NeuralNetwork {
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * 构造函数 
 	 * Creates new RBFNetwork with specified number of neurons in input, rbf and output layer
 	 * 
 	 * @param inputNeuronsCount
@@ -65,44 +66,51 @@ public class RBFNetwork extends NeuralNetwork {
 	 * layer, output layer and transfer function
 	 * 
 	 * @param inputNeuronsCount
-	 *		number of neurons in input layer
+	 *		number of neurons in input layer 输入层神经元个数
 	 * @param rbfNeuronsCount
-	 *		number of neurons in rbf layer
+	 *		number of neurons in rbf layer rbf层神经元个数
 	 * @param outputNeuronsCount
-	 *		number of neurons in output layer
+	 *		number of neurons in output layer 输出层神经元个数 
 	 */
 	private void createNetwork(int inputNeuronsCount, int rbfNeuronsCount,
 			int outputNeuronsCount) {
 		// init neuron settings for this network
-		NeuronProperties rbfNeuronProperties = new NeuronProperties();
+		NeuronProperties rbfNeuronProperties = new NeuronProperties(); // 构建rbf网络的设置
 		rbfNeuronProperties.setProperty("inputFunction", Difference.class);
 		rbfNeuronProperties.setProperty("transferFunction", Gaussian.class);
-
+		
+		// 设置网络类型：rbf 
 		// set network type code
-		this.setNetworkType(NeuralNetworkType.RBF_NETWORK);
-
+		this.setNetworkType(NeuralNetworkType.RBF_NETWORK); 
+		
+		// 设置输入层：线性函数
 		// create input layer
-		Layer inputLayer = LayerFactory.createLayer(inputNeuronsCount, TransferFunctionType.LINEAR);
+		Layer inputLayer = LayerFactory.createLayer(inputNeuronsCount, TransferFunctionType.LINEAR); 
 		this.addLayer(inputLayer);
-
+		
+		// 设置 rbf层 ：rbf函数 
 		// create rbf layer
-		Layer rbfLayer = LayerFactory.createLayer(rbfNeuronsCount, rbfNeuronProperties);
+		Layer rbfLayer = LayerFactory.createLayer(rbfNeuronsCount, rbfNeuronProperties); 
 		this.addLayer(rbfLayer);
-
+		
+		// 设置输出层：线性函数
 		// create output layer
-		Layer outputLayer = LayerFactory.createLayer(outputNeuronsCount, TransferFunctionType.LINEAR);
+		Layer outputLayer = LayerFactory.createLayer(outputNeuronsCount, TransferFunctionType.LINEAR); 
 		this.addLayer(outputLayer);
-
+		
+		// 输入层 和 rbf层进行全链接
 		// create full conectivity between input and rbf layer
-		ConnectionFactory.fullConnect(inputLayer, rbfLayer);
+		ConnectionFactory.fullConnect(inputLayer, rbfLayer); 
+		// rbf 层和 输出层进行全链接 
 		// create full conectivity between rbf and output layer
-		ConnectionFactory.fullConnect(rbfLayer, outputLayer);
+		ConnectionFactory.fullConnect(rbfLayer, outputLayer); 
 
 		// set input and output cells for this network
 		NeuralNetworkFactory.setDefaultIO(this);
-
+		
+		// 设置学习规则 
 		// set appropriate learning rule for this network
-		this.setLearningRule(new RBFLearning());
+		this.setLearningRule(new RBFLearning()); 
 	}
 
 }

@@ -1,5 +1,7 @@
 package org.neuroph.nnet.learning.kmeans;
 
+import java.util.Arrays;
+
 import org.neuroph.core.data.DataSet;
 
 public class KMeansClusteringTest {
@@ -22,7 +24,14 @@ public class KMeansClusteringTest {
 			
 			System.out.println(centroid.toString());
 		}
-	}
+		
+		for (Cluster cluster : clusters) { // for each cluster
+			KVector centroid = cluster.getCentroid();
+                System.out.println(Arrays.toString(centroid.getValues()));  // and set new centroid to avg sum
+            }                                 
+        }
+		
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		runKMeans();

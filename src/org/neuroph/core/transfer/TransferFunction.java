@@ -19,6 +19,9 @@ package org.neuroph.core.transfer;
 import java.io.Serializable;
 
 /**
+ * 抽象类
+ * 
+ * 所以网络的传递函数
  * Abstract base class for all neuron tranfer functions.
  * 
  * @author Zoran Sevarac <sevarac@gmail.com>

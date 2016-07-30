@@ -116,6 +116,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     private final Logger LOGGER = LoggerFactory.getLogger(NeuralNetwork.class);        
 
     /**
+     * 空神经网络
      * Creates an instance of empty neural network.
      */
     public NeuralNetwork() {
@@ -126,6 +127,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 增加一层到该神经网络
      * Adds layer to neural network
      *
      * @param layer layer to add
@@ -148,6 +150,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * index位置添加一层
      * Adds layer to specified index position in network
      *
      * @param index index position to add layer
@@ -176,6 +179,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 删除该层
      * Removes specified layer from network
      *
      * @param layer layer to remove
@@ -192,6 +196,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 删除index 层 
      * Removes layer at specified index position from net
      *
      * @param index int value represents index postion of layer which should be
@@ -206,6 +211,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 获取所有层 
      * Returns layers array
      *
      * @return array of layers
@@ -215,6 +221,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
     
     /**
+     * 获取index层 
      * Returns layer at specified index
      *
      * @param index layer index position
@@ -225,6 +232,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 获取layer在第几层
      * Returns index position of the specified layer
      *
      * @param layer requested Layer object
@@ -235,6 +243,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 获取层的个数
      * Returns number of layers in network
      *
      * @return number of layes in net
@@ -244,6 +253,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 设置输入层
      * Sets network input. Input is an array of double values.
      *
      * @param inputVector network input as double array
@@ -263,6 +273,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
 
 
     /**
+     * 获取输出层
      * Returns network output vector. Output vector is an array  collection of Double
      * values.
      *
@@ -306,6 +317,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     
     
     /**
+     * 对整个网络执行计算
      * Performs calculation on whole network
      */
     public void calculate() {
@@ -318,6 +330,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 重置为整个网络的激活水平
      * Resets the activation levels for whole network
      */
     public void reset() {
@@ -327,6 +340,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 学习指定的训练集
      * Learn the specified training set
      *
      * @param trainingSet set of training elements to learn
@@ -340,6 +354,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 学习指定的训练集,使用指定的学习规则
      * Learn the specified training set, using specified learning rule
      *
      * @param trainingSet  set of training elements to learn
@@ -352,6 +367,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
 
 
     /**
+     * 停止学习
      * Stops learning
      */
     public void stopLearning() {
@@ -359,6 +375,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 暂停学习,把学习线程在ca状态。意义只有我们学习是在新线程完成learnInNewThread()方法
      * Pause the learning - puts learning thread in ca state. Makes sense only
      * wen learning is done in new thread with learnInNewThread() method
      */
@@ -369,6 +386,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 暂停学习
      * Resumes paused learning - notifies the learning rule to continue
      */
     public void resumeLearning() {
@@ -378,6 +396,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 随机链接权值
      * Randomizes connection weights for the whole network
      */
     public void randomizeWeights() {
@@ -385,6 +404,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 链接权值在这两个数之间
      * Randomizes connection weights for the whole network within specified
      * value range
      */
@@ -393,6 +413,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 随机数进行初始化权值
      * Randomizes connection weights for the whole network using specified
      * random generator
      */
@@ -401,6 +422,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 随机数进行初始化权值
      * Randomizes connection weights for the whole network using specified
      * randomizer
      *
@@ -411,6 +433,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 获取网络类型
      * Returns type of this network
      *
      * @return network type
@@ -420,6 +443,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 设置网络类型
      * Sets type for this network
      *
      * @param type network type
@@ -429,6 +453,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 获取输入层神经元
      * Returns input neurons
      *
      * @return input neurons
@@ -438,6 +463,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 获取输入层神经元的个数
      * Gets number of input neurons
      *
      * @return number of input neurons
@@ -447,6 +473,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 设置输入层神经元
      * Sets input neurons
      *
      * @param inputNeurons array of input neurons
@@ -458,6 +485,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 获取输出层神经元
      * Returns output neurons
      *
      * @return list of output neurons
@@ -471,6 +499,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 设置输出层神经元
      * Sets output neurons
      *
      * @param outputNeurons output neurons collection
@@ -483,6 +512,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 设置输出成标签
      * Sets labels for output neurons
      *
      * @param labels labels for output neurons
@@ -494,6 +524,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 获取学习规则
      * Returns the learning algorithm of this network
      *
      * @return algorithm for network training
@@ -503,6 +534,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 设置学习规则
      * Sets learning algorithm for this network
      *
      * @param learningRule learning algorithm for this network
@@ -518,6 +550,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
 
 
     /**
+     * 获取所有神经网络的权值
      * Returns all network weights as an double array
      *
      * @return network weights as an double array
@@ -536,6 +569,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 设置神经网络各个层的的权值
      * Sets network weights from the specified double array
      *
      * @param weights array of weights to set
@@ -551,12 +585,16 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
             }
         }
     }
-
+    /**
+     * 所有层是否空
+     * @return
+     */
     public boolean isEmpty() {
         return layers.isEmpty();
     }
 
     /**
+     * 创建链接
      * Creates connection with specified weight value between specified neurons
      *
      * @param fromNeuron neuron to connect
@@ -737,6 +775,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 获取标签
      * Get network label
      *
      * @return network label
@@ -746,6 +785,7 @@ public class NeuralNetwork<L extends LearningRule> implements Serializable {
     }
 
     /**
+     * 设置标签
      * Set network label
      *
      * @param label network label to set

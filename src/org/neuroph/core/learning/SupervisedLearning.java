@@ -146,6 +146,7 @@ abstract public class SupervisedLearning extends IterativeLearning implements
     }
 
     /**
+     * 对一个样本进行训练
      * This method implements basic logic for one learning epoch for the
      * supervised learning algorithms. Epoch is the one pass through the
      * training set. This method  iterates through the training set

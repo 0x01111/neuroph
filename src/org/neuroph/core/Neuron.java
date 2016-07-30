@@ -29,6 +29,12 @@ import org.neuroph.core.transfer.TransferFunction;
 
 /**
  * <pre>
+ * 基本一般神经元模型根据McCulloch-Pitts神经元模型。
+ * 不同的神经元模型可以通过使用不同的输入和传递函数创建这个类的实例,
+ * 或从这个类派生出来的。神经元是神经网络的基本处理元素。
+ * 这个类实现以下行为:
+ * output = transferFunction( inputFunction(inputConnections) )
+ * 
  * Basic general neuron model according to McCulloch-Pitts neuron model.
  * Different neuron models can be created by using different input and transfer functions for instances of this class,
  * or by deriving from this class. The neuron is basic processing element of neural network.
@@ -58,23 +64,23 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
     private static final long serialVersionUID = 4L;
 
     /**
-     * 神经元的父结点  \t Parent layer for this neuron
+     * 该神经元的上一层所有神经元   \t Parent layer for this neuron
      */
     protected Layer parentLayer;
 
     /**
-     * Collection of neuron's input connections (connections to this neuron)
+     * 所有神经元的输入连接  Collection of neuron's input connections (connections to this neuron)
      */
     protected List<Connection> inputConnections;
 
     /**
-     * Collection of neuron's output connections (connections from this to other
+     * 所有神经元的输出连接  Collection of neuron's output connections (connections from this to other
      * neurons)
      */
     protected List<Connection> outConnections;
 
     /**
-     * Total net input for this neuron. Represents total input for this neuron
+     * 所有输入神经元的个数 Total net input for this neuron. Represents total input for this neuron
      * received from input function.
      */
     protected transient double totalInput = 0;
@@ -85,26 +91,31 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
     protected transient double output = 0;
 
     /**
-     * Local error for this neuron
+     * 该神经元局部误差  Local error for this neuron
      */
     protected transient double error = 0;
 
     /**
-     * Input function for this neuron
+     * 该神经元的输入函数 Input function for this neuron
      */
     protected InputFunction inputFunction;
 
     /**
-     * Transfer function for this neuron
+     * 该神经元的传递函数 Transfer function for this neuron
      */
     protected TransferFunction transferFunction;
 
     /**
-     * Neuron's label
+     * 神经元标签 Neuron's label
      */
     private String label;
 
     /**
+     * 构造函数 
+     * this.inputFunction = new WeightedSum();  // 该神经元的输入函数 
+        this.transferFunction = new Step(); // 该神经元的传递函数 
+        this.inputConnections = new ArrayList<>(); // 所有神经元的输入连接
+        this.outConnections = new ArrayList<>(); //  所有神经元的输出连接 
      * Creates an instance of Neuron with default settings: weighted sum input function
      * and Step transfer function. This is the basic McCulloch-Pitts neuron model.
      */
@@ -137,6 +148,7 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
     }
 
     /**
+     * 计算神经元的输出值
      * Calculates neuron's output
      */
     public void calculate() {
@@ -153,6 +165,7 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
     }
 
     /**
+     * 设置输入神经元个数
      * Sets neuron's input
      *
      * @param input input value to set
@@ -162,6 +175,7 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
     }
 
     /**
+     * 获取输入神经元个数
      * Returns total net input
      *
      * @return total net input
@@ -171,6 +185,7 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
     }
 
     /**
+     * 获取输出神经元个数
      * Returns neuron's output
      *
      * @return neuron output
@@ -180,6 +195,8 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
     }
 
     /**
+     * true:这个神经元的输入链接
+     * false：不是 
      * Returns true if there are input connections for this neuron, false
      * otherwise
      *
@@ -208,6 +225,7 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
     }
 
     /**
+     *添加输入链接（left链接）
      * Adds the specified input connection
      *
      * @param connection input connection to add
@@ -235,6 +253,7 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
     }
 
     /**
+     * 添加form神经元
      * Adds input connection from specified neuron.
      *
      * @param fromNeuron neuron to connect from
@@ -245,6 +264,7 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
     }
 
     /**
+     * addInputConnection(Neuron fromNeuron, double weightVal) 
      * Adds input connection with the given weight, from given neuron
      *
      * @param fromNeuron neuron to connect from
@@ -256,6 +276,7 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
     }
 
     /**
+     * addOutputConnection(Connection connection)
      * Adds the specified output connection
      *
      * @param connection output connection to add
@@ -282,6 +303,7 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
     }
 
     /**
+     * 获取该神经元的所有输入链接
      * Returns input connections for this neuron
      *
      * @return input connections of this neuron
@@ -291,6 +313,7 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
     }
 
     /**
+     * 获取该神经元的所有输出链接
      * Returns output connections from this neuron
      *
      * @return output connections from this neuron
@@ -417,6 +440,7 @@ public class Neuron implements Serializable, Cloneable /*, Callable<Void>*/ {
     }
 
     /**
+     * 获取权值 
      * Returns weights vector of input connections
      *
      * @return weights vector of input connections
